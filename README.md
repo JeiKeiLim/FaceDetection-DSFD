@@ -1,66 +1,50 @@
-## [DSFD: Dual Shot Face Detector](https://arxiv.org/abs/1810.10220)
+# Anonymizing videos by [DSFD: Dual Shot Face Detector](https://arxiv.org/abs/1810.10220)
 
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
 By [Jian Li](https://lijiannuist.github.io/), [Yabiao Wang](https://github.com/ChaunceyWang), [Changan Wang](https://github.com/HiKapok), [Ying Tai](https://tyshiwo.github.io/), [Jianjun Qian](http://www.escience.cn/people/JianjunQian/index.html), [Jian Yang](https://scholar.google.com/citations?user=6CIDtZQAAAAJ&hl=zh-CN&oi=sra), Chengjie Wang, Jilin Li, Feiyue Huang.
 
+Modified by [Jongkuk Lim](http://limjk.com?refer=github_DSFD)
+
+## History
+This repository was forked from [FaceDetection-DSFD](https://github.com/TencentYoutuResearch/FaceDetection-DSFD)
+
+
 ## Introduction
-This paper is accepted by CVPR 2019.
+Simple implementation of video anonymization.
 
-In this paper, we propose a novel face detection network, named DSFD, with superior performance over the state-of-the-art face detectors. You can use the code to evaluate our DSFD for face detection. 
+If you are looking for a faster version, check [Anonymizing videos by lightDSFD](https://github.com/JeiKeiLim/lightDSFD). 
+And, if you are looking for a simpler example, [noone video](https://github.com/JeiKeiLim/noone_video) is implemented by only OpenCV examples.
 
-For more details, please refer to our paper [DSFD: Dual Shot Face Detector](https://arxiv.org/abs/1810.10220)!
+Note that this repository is not designed for training models. If you are looking for training models, please visit original repository [FaceDetection-DSFD](https://github.com/TencentYoutuResearch/FaceDetection-DSFD).
 
-<p align="center">
-<img src="https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/imgs/DSFD_framework.PNG" alt="DSFD Framework" width="1000px">
-</p>
+## Comparisons
 
-Our DSFD face detector achieves state-of-the-art performance on [WIDER FACE](http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/WiderFace_Results.html) and [FDDB](http://vis-www.cs.umass.edu/fddb/results.html) benchmark.
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_01.gif" />
 
-### WIDER FACE
-<p align="center">
-<img src="https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/imgs/DSFD_widerface.PNG" alt="DSFD Widerface Performance" width="1000px">
-</p>
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_02.gif" />
 
-### FDDB
-<p align="center">
-<img src="https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/imgs/DSFD_fddb.PNG" alt="DSFD FDDB Performance" width="1000px">
-</p>
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_03.gif" />
 
-## Qualitative Results
-<p align='center'>
-  <img src='https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/imgs/DSFD_demo1.PNG' width='1000'/>
-</p>
+<img src="https://github.com/JeiKeiLim/mygifcontainer/raw/master/deep_face_detector/compare_04.gif" />
 
-<p align='center'>
-  <img src='https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/imgs/DSFD_demo2.PNG' width='1000'/>
-</p>
 
 ## Requirements
-- Torch == 0.3.1
-- Torchvision == 0.2.1
-- Python == 3.6
-- NVIDIA GPU == Tesla P40 
-- Linux CUDA CuDNN
+CUDA supported enviornment
+
+(Tested on NVIDIA GTX 1060(6GB) and GTX 1080 Ti(8GB))
+
+- Torch >= 0.3.1
+- Torchvision >= 0.2.1
+- (Tested on torch 1.3.1 and Torchvision 0.4.2)
+- Python 3.6
 
 ## Getting Started
 
-### Installation
-Clone the github repository. We will call the cloned directory as `$DSFD_ROOT`.
-```bash
-git clone https://github.com/TencentYoutuResearch/FaceDetection-DSFD.git
-cd FaceDetection-DSFD
-export CUDA_VISIBLE_DEVICES=0
-```
-
-
-### Evaluation
-1. Download the images of [WIDER FACE](http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/) and [FDDB](https://drive.google.com/open?id=17t4WULUDgZgiSy5kpCax4aooyPaz3GQH) to `$DSFD_ROOT/data/`.
-
-2. Download our DSFD model [[微云]](https://share.weiyun.com/567x0xQ) [[google drive]](https://drive.google.com/file/d/1WeXlNYsM6dMP3xQQELI-4gxhwKUQxc3-/view?usp=sharing) trained on WIDER FACE training set to `$DSFD_ROOT/weights/`.
-
+1. Download DSFD model from original repository provided [[微云]](https://share.weiyun.com/567x0xQ) [[google drive]](https://drive.google.com/file/d/1WeXlNYsM6dMP3xQQELI-4gxhwKUQxc3-/view?usp=sharing) 
+2. Place `WIDERFace_DSFD_RES152.pth` to `./weights/`.
   
-3. Check out [`./demo.py`](https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/demo.py) on how to detect faces using the DSFD model and how to plot detection results.
+3. Run `./demo.py` to check if it is running.
 ```
 python demo.py [--trained_model [TRAINED_MODEL]] [--img_root  [IMG_ROOT]] 
                [--save_folder [SAVE_FOLDER]] [--visual_threshold [VISUAL_THRESHOLD]] 
@@ -70,29 +54,40 @@ python demo.py [--trained_model [TRAINED_MODEL]] [--img_root  [IMG_ROOT]]
     --visual_threshold   Confidence thresh
 ```
 
-4. Evaluate the trained model via [`./widerface_val.py`](https://github.com/TencentYoutuResearch/FaceDetection-DSFD/blob/master/widerface_val.py) on WIDER FACE.
+
+## Usage
 ```
-python widerface_val.py [--trained_model [TRAINED_MODEL]] [--save_folder [SAVE_FOLDER]] 
-                         [--widerface_root [WIDERFACE_ROOT]]
-    --trained_model      Path to the saved model
-    --save_folder        Path of output widerface resutls
-    --widerface_root     Path of widerface dataset
+usage: blur_video.py [-h] -i INPUT -o OUTPUT [--vertical VERTICAL]
+                     [--verbose VERBOSE] [--reduce_scale REDUCE_SCALE]
+                     [--trained_model TRAINED_MODEL] [--threshold THRESHOLD]
+                     [--cuda CUDA]
 ```
 
-5. Download the [eval_tool](http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/support/eval_script/eval_tools.zip) to show the WIDERFACE performance.
-
-6. Evaluate the trained model via [`./fddb_test.py`](https://github.com/sTencentYoutuResearch/FaceDetection-DSFD/blob/master/fddb_test.py) on FDDB.
+## Required arguments
 ```
-python widerface_test.py [--trained_model [TRAINED_MODEL]] [--split_dir [SPLIT_DIR]] 
-                         [--data_dir [DATA_DIR]] [--det_dir [DET_DIR]]
-    --trained_model      Path of the saved model
-    --split_dir          Path of fddb folds
-    --data_dir           Path of fddb all images
-    --det_dir            Path to save fddb results
+Required file paths:
+  -i INPUT, --input INPUT
+                        Video file path
+  -o OUTPUT, --output OUTPUT
+                        Output video path
 ```
 
-7. Download the [evaluation](http://vis-www.cs.umass.edu/fddb/evaluation.tgz) to show the FDDB performance.
-8. Lightweight DSFD is [here](https://github.com/lijiannuist/lightDSFD).
+## Optional arguments
+```
+optional arguments:
+  -h, --help            show this help message and exit
+  --vertical VERTICAL   0 : horizontal video(default), 1 : vertical video
+  --verbose VERBOSE     Show current progress and remaining time
+  --reduce_scale REDUCE_SCALE
+                        Reduce scale ratio. ex) 2 = half size of the input.
+                        Default : 2
+  --trained_model TRAINED_MODEL
+                        Trained state_dict file path to open
+  --threshold THRESHOLD
+                        Final confidence threshold
+  --cuda CUDA           Use cuda
+```
+
 
 ### Citation
 If you find DSFD useful in your research, please consider citing: 
