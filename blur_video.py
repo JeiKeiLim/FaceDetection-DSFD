@@ -15,9 +15,12 @@ warnings.filterwarnings("ignore")
 plt.switch_backend('agg')
 
 parser = argparse.ArgumentParser(description='DSFD:Dual Shot Face Detector')
-parser.add_argument('file', type=str,
+
+in_args = parser.add_argument_group("Required file paths")
+in_args.add_argument('-i', '--input', type=str, required=True,
                     help="Video file path")
-parser.add_argument('out', type=str,
+# out_args = parser.add_argument_group("Required output file path")
+in_args.add_argument('-o', '--output', type=str, required=True,
                     help='Output video path')
 parser.add_argument('--vertical', type=int, default=0,
                     help='0 : horizontal video(default), 1 : vertical video')
@@ -107,7 +110,7 @@ def detect_faces(img, net, cfg=widerface_640):
 
 
 if __name__ == '__main__':
-    cap = cv2.VideoCapture(args.file)
+    cap = cv2.VideoCapture(args.input)
     frame_size = (int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)))
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
@@ -118,7 +121,7 @@ if __name__ == '__main__':
         out_size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) // args.reduce_scale),
                     int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) // args.reduce_scale))
 
-    out = cv2.VideoWriter(args.out,
+    out = cv2.VideoWriter(args.output,
                           fourcc,
                           cap.get(cv2.CAP_PROP_FPS),
                           out_size
