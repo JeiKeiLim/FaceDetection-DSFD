@@ -1,13 +1,8 @@
 # Anonymizing videos by [DSFD: Dual Shot Face Detector](https://arxiv.org/abs/1810.10220)
-
-[![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
-
-By [Jian Li](https://lijiannuist.github.io/), [Yabiao Wang](https://github.com/ChaunceyWang), [Changan Wang](https://github.com/HiKapok), [Ying Tai](https://tyshiwo.github.io/), [Jianjun Qian](http://www.escience.cn/people/JianjunQian/index.html), [Jian Yang](https://scholar.google.com/citations?user=6CIDtZQAAAAJ&hl=zh-CN&oi=sra), Chengjie Wang, Jilin Li, Feiyue Huang.
-
 Modified by [Jongkuk Lim](http://limjk.com?refer=github_DSFD)
 
 ## History
-This repository was forked from [FaceDetection-DSFD](https://github.com/TencentYoutuResearch/FaceDetection-DSFD)
+This repository was forked from [FaceDetection-DSFD](https://github.com/TencentYoutuResearch/FaceDetection-DSFD) which is implentation of [DSFD: Dual Shot Face Detector](https://arxiv.org/abs/1810.10220) by [Jian Li](https://lijiannuist.github.io/), [Yabiao Wang](https://github.com/ChaunceyWang), [Changan Wang](https://github.com/HiKapok), [Ying Tai](https://tyshiwo.github.io/), [Jianjun Qian](http://www.escience.cn/people/JianjunQian/index.html), [Jian Yang](https://scholar.google.com/citations?user=6CIDtZQAAAAJ&hl=zh-CN&oi=sra), Chengjie Wang, Jilin Li, Feiyue Huang.
 
 
 ## Introduction
