@@ -78,7 +78,6 @@ def infer(net, img, transform, thresh, cuda, shrink):
 
 def blur_faces(im,  dets , thresh=0.5, blur_level=100):
     """Blur detected bounding boxes."""
-    class_name = 'face'
     inds = np.where(dets[:, -1] >= thresh)[0]
     if len(inds) == 0:
         return
@@ -92,7 +91,15 @@ def blur_faces(im,  dets , thresh=0.5, blur_level=100):
         bottom = min(int(bbox[3]), im.shape[0]-1)
         right = min(int(bbox[2]), im.shape[1]-1)
 
-        im[top:bottom, left:right] = cv2.blur(im[top:bottom, left:right], (blur_level, blur_level))
+        face_size = np.sqrt((bottom-top)*(right-left))
+        blurriness = max(blur_level, face_size)
+
+        if type(score) is torch.Tensor:
+            score = score.cpu().numpy()
+
+        blurriness = int( blurriness * score )
+
+        im[top:bottom, left:right] = cv2.blur(im[top:bottom, left:right], (blurriness, blurriness))
 
 
 def detect_faces(img, net, cfg=widerface_640):
